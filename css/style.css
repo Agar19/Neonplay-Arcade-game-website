@@ -1,0 +1,302 @@
+/* ============ NEONPLAY ============ */
+:root{
+  --bg:#070713; --bg2:#0d0d22; --panel:#12122c; --panel2:#1a1a3d;
+  --line:rgba(255,255,255,.09);
+  --txt:#e8e8ff; --dim:#9a9ac4;
+  --c1:#00e5ff; --c2:#ff2fb9; --c3:#8b5cff; --c4:#39ff88; --c5:#ffd93d;
+  --danger:#ff4d6d;
+  --r:14px;
+  --shadow:0 18px 50px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+.hidden{display:none !important}
+button{font-family:inherit}
+::selection{background:var(--c2);color:#fff}
+
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-thumb{background:#2a2a55;border-radius:8px}
+*::-webkit-scrollbar-track{background:transparent}
+
+/* ---------- buttons ---------- */
+.btn{
+  cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--txt);
+  padding:11px 18px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.4px;
+  transition:transform .12s ease, box-shadow .18s ease, background .18s ease, border-color .18s;
+}
+.btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.25)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(100deg,var(--c2),var(--c3) 55%,var(--c1));
+  color:#08081a;border:0;box-shadow:0 8px 26px rgba(255,47,185,.32);width:100%;padding:14px;
+  font-size:15px;letter-spacing:1.2px;
+}
+.btn-ghost{background:transparent;width:100%;margin-top:12px;color:var(--dim)}
+.btn-ghost:hover{color:var(--txt)}
+.btn-mini{padding:7px 12px;font-size:12px;border-radius:8px;background:rgba(255,255,255,.06)}
+
+/* ================= AUTH ================= */
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;overflow:hidden}
+.auth-bg{
+  position:fixed;inset:-30%;z-index:0;
+  background:
+    radial-gradient(38vw 38vw at 18% 22%, rgba(255,47,185,.28), transparent 62%),
+    radial-gradient(42vw 42vw at 82% 26%, rgba(0,229,255,.22), transparent 62%),
+    radial-gradient(46vw 46vw at 50% 92%, rgba(139,92,255,.26), transparent 62%);
+  filter:blur(10px);animation:drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift{to{transform:translate3d(4%, -3%, 0) scale(1.12)}}
+.auth-card{
+  position:relative;z-index:1;width:min(430px,100%);
+  background:linear-gradient(180deg,rgba(22,22,50,.94),rgba(10,10,26,.96));
+  border:1px solid var(--line);border-radius:22px;padding:34px 30px 26px;box-shadow:var(--shadow);
+  backdrop-filter:blur(14px);
+}
+.logo{text-align:center;margin-bottom:24px}
+.logo-mark{font-size:44px;display:block;filter:drop-shadow(0 0 16px var(--c2))}
+.logo h1{margin:6px 0 4px;font-size:34px;letter-spacing:5px;font-weight:800}
+.logo h1 span{background:linear-gradient(90deg,var(--c2),var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{margin:0;color:var(--dim);font-size:13px;letter-spacing:.6px}
+.tabs{display:flex;gap:6px;background:rgba(0,0,0,.3);padding:5px;border-radius:12px;margin-bottom:20px}
+.tab{flex:1;padding:10px;border:0;background:transparent;color:var(--dim);border-radius:9px;cursor:pointer;font-weight:700;font-size:13px}
+.tab.active{background:var(--panel2);color:var(--txt);box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.auth-form label{display:block;font-size:12px;color:var(--dim);margin-bottom:14px;letter-spacing:.7px;text-transform:uppercase;font-weight:700}
+.auth-form input{
+  display:block;width:100%;margin-top:7px;padding:13px 14px;border-radius:11px;
+  border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--txt);font-size:15px;
+  text-transform:none;letter-spacing:normal;font-weight:500;outline:none;transition:border-color .16s, box-shadow .16s;
+}
+.auth-form input:focus{border-color:var(--c1);box-shadow:0 0 0 3px rgba(0,229,255,.15)}
+.avatar-pick{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
+.avatar-pick button{
+  font-size:20px;width:42px;height:42px;border-radius:11px;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);line-height:1;
+}
+.avatar-pick button.sel{border-color:var(--c1);background:rgba(0,229,255,.16);transform:scale(1.06)}
+.msg{min-height:18px;margin:12px 0 0;font-size:13px;text-align:center;color:var(--danger)}
+.msg.ok{color:var(--c4)}
+.disclaimer{color:#6e6e96;font-size:11px;line-height:1.55;text-align:center;margin:18px 0 0}
+
+/* ================= SHELL ================= */
+.topbar{
+  position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:16px;
+  padding:14px 22px;background:rgba(7,7,19,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.brand{font-weight:800;letter-spacing:3px;font-size:17px;white-space:nowrap}
+.brand b{background:linear-gradient(90deg,var(--c2),var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.search-wrap{flex:1;max-width:420px}
+#search{
+  width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--line);
+  background:rgba(255,255,255,.05);color:var(--txt);outline:none;font-size:14px;
+}
+#search:focus{border-color:var(--c3)}
+.user-chip{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ava{font-size:22px}
+.uname{font-weight:700;font-size:14px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.filters{display:flex;gap:8px;padding:16px 22px 4px;flex-wrap:wrap}
+.chip{
+  cursor:pointer;padding:8px 15px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);color:var(--dim);font-size:13px;font-weight:700;
+}
+.chip.active{background:linear-gradient(90deg,var(--c3),var(--c2));color:#0a0a1e;border-color:transparent}
+
+main{padding:10px 22px 40px;max-width:1500px;margin:0 auto}
+.stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0 24px}
+.stat{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.stat b{display:block;font-size:24px;line-height:1.2}
+.stat span{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px}
+.card{
+  position:relative;cursor:pointer;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--line);background:linear-gradient(165deg,var(--panel),#0b0b1c);
+  padding:18px;min-height:172px;display:flex;flex-direction:column;
+  transition:transform .16s ease, box-shadow .2s ease, border-color .2s;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22);box-shadow:0 16px 34px rgba(0,0,0,.5)}
+.card .glow{position:absolute;inset:auto -30% -60% -30%;height:130px;filter:blur(34px);opacity:.5;transition:opacity .2s}
+.card:hover .glow{opacity:.9}
+.card .emoji{font-size:34px;margin-bottom:10px;position:relative}
+.card h3{margin:0 0 6px;font-size:16px;position:relative}
+.card p{margin:0;color:var(--dim);font-size:12.5px;line-height:1.5;position:relative;flex:1}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;position:relative;font-size:11px}
+.tagpill{padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--dim);font-weight:700;letter-spacing:.5px}
+.best{color:var(--c5);font-weight:800}
+.empty{text-align:center;color:var(--dim);padding:60px 0}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 22px;border-top:1px solid var(--line);color:#5f5f8a;font-size:12px}
+
+/* ================= STAGE ================= */
+.stage{position:fixed;inset:0;z-index:60;background:radial-gradient(80vw 80vh at 50% 0%,#12122c,#05050f 70%);display:flex;flex-direction:column}
+.stage-bar{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);background:rgba(7,7,19,.7)}
+.stage-bar h2{margin:0;font-size:17px;letter-spacing:1px}
+.stage-meta{margin-left:auto;display:flex;align-items:center;gap:8px}
+.pill{padding:6px 12px;border-radius:999px;background:rgba(255,217,61,.14);color:var(--c5);font-size:12px;font-weight:800}
+.stage-body{flex:1;display:grid;place-items:center;padding:18px;overflow:auto}
+#stage-mount{max-width:100%}
+.stage-help{padding:10px 18px 16px;text-align:center;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line)}
+.stage-help kbd{
+  background:var(--panel2);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+  padding:2px 7px;font-size:11px;font-family:inherit;color:var(--txt);margin:0 2px;
+}
+
+/* ---------- shared game UI ---------- */
+.gwrap{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.gpanel{
+  min-width:170px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;display:flex;flex-direction:column;gap:12px;
+}
+.gpanel h4{margin:0;font-size:11px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase}
+.gpanel .big{font-size:30px;font-weight:800;line-height:1}
+.gpanel .row{display:flex;justify-content:space-between;font-size:13px;color:var(--dim)}
+.gpanel .row b{color:var(--txt)}
+canvas{background:#05050f;border-radius:var(--r);border:1px solid var(--line);display:block;max-width:100%;touch-action:none}
+.gover{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  background:rgba(5,5,15,.86);border-radius:var(--r);backdrop-filter:blur(3px);z-index:5;
+}
+.gover h3{font-size:28px;margin:0 0 6px;letter-spacing:2px}
+.gover p{color:var(--dim);margin:0 0 16px}
+.rel{position:relative;display:inline-block}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{
+  flex:1;padding:8px 10px;font-size:12px;border-radius:8px;cursor:pointer;font-weight:700;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--dim);
+}
+.seg button.on{background:var(--c3);border-color:transparent;color:#0a0a1e}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,140%);z-index:99;
+  background:var(--panel2);border:1px solid var(--line);padding:12px 20px;border-radius:12px;
+  box-shadow:var(--shadow);font-weight:700;font-size:14px;transition:transform .32s cubic-bezier(.2,1.3,.4,1);
+}
+.toast.show{transform:translate(-50%,0)}
+
+@media (max-width:720px){
+  .topbar{flex-wrap:wrap}
+  .search-wrap{order:3;flex-basis:100%;max-width:none}
+  main{padding:10px 14px 30px}
+  .filters{padding:14px 14px 4px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .card{min-height:150px;padding:14px}
+  .stage-bar h2{font-size:14px}
+  .gwrap{gap:12px}
+}
+
+/* ============================================================
+   MOTION — shared animation utilities for the DOM-based games
+   ============================================================ */
+@keyframes pop      { 0%{transform:scale(1)} 40%{transform:scale(1.16)} 100%{transform:scale(1)} }
+@keyframes popIn    { 0%{transform:scale(.2);opacity:0} 70%{transform:scale(1.08)} 100%{transform:scale(1);opacity:1} }
+@keyframes shakeX   { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(7px)}
+                      60%{transform:translateX(-5px)} 80%{transform:translateX(3px)} }
+@keyframes flipIn   { 0%{transform:rotateX(0)} 50%{transform:rotateX(90deg)} 100%{transform:rotateX(0)} }
+@keyframes riseIn   { from{transform:translateY(14px);opacity:0} to{transform:translateY(0);opacity:1} }
+@keyframes pulseRing{ 0%{box-shadow:0 0 0 0 rgba(0,229,255,.55)} 100%{box-shadow:0 0 0 18px rgba(0,229,255,0)} }
+@keyframes floatUp  { from{transform:translateY(0);opacity:1} to{transform:translateY(-42px);opacity:0} }
+@keyframes glowPulse{ 0%,100%{filter:brightness(1)} 50%{filter:brightness(1.45)} }
+
+.anim-pop   { animation:pop .22s ease-out }
+.anim-popin { animation:popIn .2s cubic-bezier(.2,1.5,.4,1) }
+.anim-shake { animation:shakeX .4s ease }
+.anim-rise  { animation:riseIn .28s ease-out both }
+
+.stage-body{ animation:riseIn .26s ease-out }
+.gover{ animation:popIn .26s cubic-bezier(.2,1.3,.4,1) }
+.card{ animation:riseIn .3s ease-out both }
+
+/* floating +score text used by DOM games */
+.fx-float{
+  position:absolute;pointer-events:none;font-weight:800;font-size:20px;z-index:6;
+  animation:floatUp .8s ease-out forwards;text-shadow:0 0 14px currentColor;
+}
+
+/* --- 2048: absolutely positioned, transform-animated tiles --- */
+.t2048-wrap{position:relative;background:#12122c;border:1px solid var(--line);border-radius:16px;padding:10px}
+.t2048-cell{position:absolute;border-radius:11px;background:rgba(255,255,255,.04)}
+.t2048-tile{
+  position:absolute;border-radius:11px;display:grid;place-items:center;font-weight:800;
+  transition:transform .11s cubic-bezier(.3,.9,.4,1);will-change:transform;
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+}
+
+/* --- memory: real 3D card flip --- */
+.mem-card{perspective:900px;cursor:pointer}
+.mem-inner{
+  position:relative;width:100%;height:100%;transition:transform .42s cubic-bezier(.3,1.1,.4,1);
+  transform-style:preserve-3d;
+}
+.mem-card.up .mem-inner{transform:rotateY(180deg)}
+.mem-face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;
+  display:grid;place-items:center;font-size:38px;border:1px solid rgba(255,255,255,.12);
+}
+.mem-back{background:linear-gradient(150deg,#8b5cff,#ff2fb9)}
+.mem-back::after{content:'';position:absolute;inset:10px;border:2px dashed rgba(255,255,255,.35);border-radius:9px}
+.mem-front{background:#1a1a3d;transform:rotateY(180deg)}
+.mem-card.done .mem-front{background:rgba(57,255,136,.16);border-color:#39ff88}
+
+/* --- wordle tiles --- */
+.wd-tile{
+  display:grid;place-items:center;border:2px solid rgba(255,255,255,.14);border-radius:9px;
+  font-size:28px;font-weight:800;text-transform:uppercase;transition:border-color .15s, transform .12s;
+  will-change:transform;
+}
+.wd-tile.filled{animation:pop .16s ease-out}
+.wd-key{
+  cursor:pointer;border:0;border-radius:8px;font-weight:800;font-size:13px;color:#e8e8ff;
+  background:rgba(255,255,255,.1);transition:background .25s, color .25s, transform .1s;
+}
+.wd-key:active{transform:translateY(2px)}
+
+/* --- minesweeper / sudoku cells --- */
+.ms-cell{transition:background .16s, transform .1s}
+.ms-cell.hidden-cell:hover{background:rgba(255,255,255,.2)}
+.ms-reveal{animation:popIn .18s ease-out}
+.sd-cell{transition:background .16s, color .16s}
+
+/* --- whack-a-mole --- */
+.mole-hole{
+  position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,#0b0b1c,#241a12 70%);
+  border:1px solid var(--line);
+}
+.mole{
+  position:absolute;left:0;right:0;bottom:-100%;height:100%;display:grid;place-items:center;
+  font-size:56px;transition:bottom .13s cubic-bezier(.3,1.4,.5,1);
+}
+.mole.up{bottom:0}
+
+/* --- connect four disc drop --- */
+@keyframes dropIn{ from{transform:translateY(var(--drop,-320px))} 60%{transform:translateY(6px)} 100%{transform:translateY(0)} }
+.c4-disc{animation:dropIn .38s cubic-bezier(.35,.1,.3,1)}
+
+/* --- chess --- */
+.chess-sq{transition:background .16s}
+.chess-piece{transition:transform .18s cubic-bezier(.3,.9,.4,1);will-change:transform}
+
+/* --- type racer --- */
+@keyframes caretBlink{ 0%,55%{border-color:#00e5ff} 56%,100%{border-color:transparent} }
+.tr-caret{
+  border-bottom:3px solid #00e5ff;border-radius:3px;background:rgba(0,229,255,.14);
+  animation:caretBlink 1.05s step-end infinite;color:#e8e8ff;
+}
+.tr-ok{color:#39ff88}
+.tr-bad{color:#0a0a1e;background:#ff4d6d;border-radius:3px}
+.tr-todo{color:#6e6e96}
+.tr-bar{transition:width .12s linear}
+
+/* --- reaction pad --- */
+.rx-pad{transition:background .12s ease, box-shadow .2s ease}
+.rx-go{animation:pulseRing .7s ease-out infinite}
+
+/* --- math blitz --- */
+.mb-card{transition:box-shadow .2s ease, border-color .2s ease}
+.mb-ok{box-shadow:0 0 0 2px #39ff88, 0 0 40px rgba(57,255,136,.35)}
+.mb-no{box-shadow:0 0 0 2px #ff4d6d, 0 0 40px rgba(255,77,109,.3)}

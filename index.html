@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEONPLAY // Offline Arcade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127918;</text></svg>">
+</head>
+<body>
+
+<!-- ================= AUTH SCREEN ================= -->
+<div id="auth" class="auth-screen">
+  <div class="auth-bg"></div>
+  <div class="auth-card">
+    <div class="logo">
+      <span class="logo-mark">&#127918;</span>
+      <h1>NEON<span>PLAY</span></h1>
+      <p class="tagline">25 games. Zero internet. Insert coin.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="login">Sign in</button>
+      <button class="tab" data-tab="register">Create player</button>
+    </div>
+
+    <form id="form-login" class="auth-form" autocomplete="off">
+      <label>Player name<input type="text" name="user" placeholder="arcade_hero" maxlength="16" required></label>
+      <label>Passcode<input type="password" name="pass" placeholder="••••••••" required></label>
+      <button class="btn btn-primary" type="submit">ENTER THE ARCADE</button>
+      <p class="msg" id="msg-login"></p>
+    </form>
+
+    <form id="form-register" class="auth-form hidden" autocomplete="off">
+      <label>Player name<input type="text" name="user" placeholder="3–16 characters" maxlength="16" required></label>
+      <label>Passcode<input type="password" name="pass" placeholder="min 4 characters" required></label>
+      <label>Confirm passcode<input type="password" name="pass2" placeholder="repeat it" required></label>
+      <div class="avatar-pick" id="avatar-pick"></div>
+      <button class="btn btn-primary" type="submit">CREATE PLAYER</button>
+      <p class="msg" id="msg-register"></p>
+    </form>
+
+    <button class="btn btn-ghost" id="btn-guest">Play as guest &rarr;</button>
+    <p class="disclaimer">Accounts are stored locally in this browser only. This is a toy login for score-keeping, not real security &mdash; don't reuse a real password.</p>
+  </div>
+</div>
+
+<!-- ================= ARCADE SHELL ================= -->
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="brand"><span>&#127918;</span> NEON<b>PLAY</b></div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search 25 games…" autocomplete="off">
+    </div>
+    <div class="user-chip" id="user-chip">
+      <span class="ava" id="chip-ava">&#128126;</span>
+      <span class="uname" id="chip-name">guest</span>
+      <button class="btn btn-mini" id="btn-logout">Log out</button>
+    </div>
+  </header>
+
+  <nav class="filters" id="filters"></nav>
+
+  <main>
+    <section class="stats-strip" id="stats-strip"></section>
+    <section class="grid" id="grid"></section>
+    <p class="empty hidden" id="empty">No games match that search.</p>
+  </main>
+
+  <footer class="foot">
+    <span>Everything here runs offline &mdash; no requests, no CDN, no tracking.</span>
+    <span id="foot-count"></span>
+  </footer>
+</div>
+
+<!-- ================= GAME OVERLAY ================= -->
+<div id="stage" class="stage hidden">
+  <div class="stage-bar">
+    <button class="btn btn-mini" id="stage-back">&larr; Arcade</button>
+    <h2 id="stage-title">Game</h2>
+    <div class="stage-meta">
+      <span id="stage-best" class="pill"></span>
+      <button class="btn btn-mini" id="stage-restart">&#8635; Restart</button>
+      <button class="btn btn-mini" id="stage-full">&#9974; Fullscreen</button>
+    </div>
+  </div>
+  <div class="stage-body"><div id="stage-mount"></div></div>
+  <div class="stage-help" id="stage-help"></div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/fx.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/core.js"></script>
+<script src="js/games/classics.js"></script>
+<script src="js/games/puzzles.js"></script>
+<script src="js/games/board.js"></script>
+<script src="js/games/action.js"></script>
+<script src="js/games/skill.js"></script>
+<script src="js/games/extra.js"></script>
+<script src="js/boot.js"></script>
+</body>
+</html>
